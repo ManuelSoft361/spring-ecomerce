@@ -11,7 +11,8 @@ import java.util.Date;
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity(name = "orden")
+@Entity
+@Table(name = "orden")
 public class Orden {
 
     @Id
@@ -24,5 +25,12 @@ public class Orden {
     private Date fechaRecibido;
 
     private double total;
+
+    @ManyToOne
+    private Usuario usuario;
+
+    @OneToOne(mappedBy = "orden")
+    private  DetalleOrden detalleOrden;
+
 
 }

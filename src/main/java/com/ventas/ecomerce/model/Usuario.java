@@ -1,11 +1,10 @@
 package com.ventas.ecomerce.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Data
 @ToString
@@ -13,7 +12,8 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity(name = "usuario")
+@Entity
+@Table(name = "usuario")
 public class Usuario {
 
     @Id
@@ -25,6 +25,11 @@ public class Usuario {
     private String direccion;
     private String telefono;
     private String tipo;
-    private String password;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Producto> productos;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Orden> ordenes;
 
 }

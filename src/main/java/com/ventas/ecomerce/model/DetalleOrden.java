@@ -1,9 +1,6 @@
 package com.ventas.ecomerce.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Data
@@ -12,7 +9,8 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity(name = "detalle_orden")
+@Entity
+@Table(name = "detalle_orden")
 public class DetalleOrden {
 
     @Id
@@ -22,5 +20,12 @@ public class DetalleOrden {
     private double cantidad;
     private double precio;
     private double total;
+
+    @OneToOne
+    private Orden orden;
+
+    @ManyToOne
+    private Producto producto;
+
 
 }
