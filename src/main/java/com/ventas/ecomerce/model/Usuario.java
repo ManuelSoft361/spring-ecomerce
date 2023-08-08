@@ -8,13 +8,23 @@ import java.util.List;
 
 @Data
 @ToString
-@AllArgsConstructor
+
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
 @Table(name = "usuario")
 public class Usuario {
+    public Usuario(Integer id,String nombre,String username,String email,String direccion,String telefono,String tipo){
+
+        this.id=id;
+        this.nombre=nombre;
+        this.username=username;
+        this.email=email;
+        this.direccion=direccion;
+        this.telefono=telefono;
+        this.tipo=tipo;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
