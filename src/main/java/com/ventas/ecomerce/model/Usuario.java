@@ -7,8 +7,6 @@ import lombok.*;
 import java.util.List;
 
 @Data
-@ToString
-
 @NoArgsConstructor
 @Getter
 @Setter

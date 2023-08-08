@@ -5,14 +5,22 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Data
-@ToString
-@AllArgsConstructor
+
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity()
 @Table(name = "producto")
 public class Producto {
+
+    public Producto(Integer id,String nombre,String descripcion, String imagen, double precio, int cantidad){
+        this.id=id;
+        this.nombre=nombre;
+        this.descripcion=descripcion;
+        this.imagen=imagen;
+        this.precio=precio;
+        this.cantidad=cantidad;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

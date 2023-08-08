@@ -9,10 +9,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProductoImpl implements ProductoService{
+public class ProductoImpl implements ProductoService {
 
     @Autowired
     private ProductoRepository productoRepository;
+
     @Override
     public Producto Save(Producto producto) {
         return productoRepository.save(producto);
@@ -37,6 +38,6 @@ public class ProductoImpl implements ProductoService{
 
     @Override
     public List<Producto> findAll() {
-       return productoRepository.findAll();
+        return productoRepository.findAll();
     }
 }
