@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 @Controller
+@CrossOrigin(origins = "*",methods = {RequestMethod.GET,RequestMethod.POST,})
 @RequestMapping("/productos")
 public class ProductoController {
 
