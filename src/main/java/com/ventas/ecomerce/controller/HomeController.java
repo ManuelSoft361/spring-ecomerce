@@ -23,7 +23,7 @@ public class HomeController {
     private ProductoService productoService;
 
     //Para almacenar los detalles de la orden
-    List<DetalleOrden> detalles= new ArrayList<DetalleOrden>();
+    List<DetalleOrden> detalles = new ArrayList<DetalleOrden>();
 
     Orden orden = new Orden();
 
@@ -52,20 +52,46 @@ public class HomeController {
         Producto producto = new Producto();
         double sumaTotal = 0;
         Optional<Producto> optionalProducto = productoService.get(id);
-        producto=optionalProducto.get();
+        producto = optionalProducto.get();
         detalleOrden.setCantidad(cantidad);
         detalleOrden.setPrecio(producto.getPrecio());
         detalleOrden.setNombre(producto.getNombre());
-        detalleOrden.setTotal(producto.getPrecio()*cantidad);
+        detalleOrden.setTotal(producto.getPrecio() * cantidad);
         detalleOrden.setProducto(producto);
 
         detalles.add(detalleOrden);
 
-        sumaTotal = detalles.stream().mapToDouble(dt->dt.getTotal()).sum();
+        sumaTotal = detalles.stream().mapToDouble(dt -> dt.getTotal()).sum();
 
         orden.setTotal(sumaTotal);
-        model.addAttribute("cart",detalles);
-        model.addAttribute("orden",orden);
+        model.addAttribute("cart", detalles);
+        model.addAttribute("orden", orden);
+
+        return "usuario/carrito";
+    }
+
+    //Quitar un producto del carrito
+    @GetMapping("/delete/cart/{id}")
+    public String deleteProductoCarrt(@PathVariable Integer id, Model model) {
+        //Lista nueva de productos
+
+        List<DetalleOrden> ordenesNueva = new ArrayList<DetalleOrden>();
+
+        for (DetalleOrden detalleOrden : detalles) {
+            if (detalleOrden.getProducto().getId() != id) {
+                ordenesNueva.add(detalleOrden);
+            }
+        }
+        //poner la nueva lista con los productos restantes
+        detalles = ordenesNueva;
+        double sumaTotal = 0;
+
+        sumaTotal = detalles.stream().mapToDouble(dt -> dt.getTotal()).sum();
+
+        orden.setTotal(sumaTotal);
+        model.addAttribute("cart", detalles);
+        model.addAttribute("orden", orden);
+
 
         return "usuario/carrito";
     }
