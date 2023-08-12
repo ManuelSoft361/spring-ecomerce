@@ -1,6 +1,7 @@
 package com.ventas.ecomerce.service;
 
 import com.ventas.ecomerce.model.DetalleOrden;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 @Service
