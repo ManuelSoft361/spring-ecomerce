@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Controller
@@ -154,8 +156,13 @@ public class HomeController {
 
     @PostMapping("/search")
     public String searchProducto(@RequestParam String nombre, Model model){
-        System.out.println("Nombre del producto: " + nombre);
-        List<Producto> productos=productoService.findAll().stream().filter(p->p.getNombre().contains(nombre)).collect(Collectors.toList());
+        Pattern pattern = Pattern.compile(nombre, Pattern.CASE_INSENSITIVE);
+        List<Producto> productos = productoService.findAll().stream()
+                .filter(p -> {
+                    Matcher matcher = pattern.matcher(p.getNombre());
+                    return matcher.find();
+                })
+                .collect(Collectors.toList());
         model.addAttribute("productos",productos);
         return "usuario/home";
     }
