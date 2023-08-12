@@ -11,7 +11,7 @@
   <title>Spring eCommerce</title>
 
 
-  <div th:insert="usuario/header_usuario.html"></div>
+
   <!-- Bootstrap core CSS -->
   <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
 
@@ -22,7 +22,7 @@
 <body>
 
   <!-- Navigation -->
-
+  <div th:insert="usuario/header_usuario.html"></div>
     <!-- Page Content -->
     <div class="container">
 
@@ -69,7 +69,7 @@
 
             <ul class="list-group">
               <li class="list-group-item"><h5 th:text="${orden.total}">Total: $ 10</h5></li>
-              <a href="resumenorden.html" class="btn btn-dark">Ver Orden</a>
+              <a th:href="@{/order}" class="btn btn-dark">Ver Orden</a>
             </ul>
           </div>
 
